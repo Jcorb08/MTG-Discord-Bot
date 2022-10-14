@@ -3,5 +3,22 @@
 // connect a whole client to the gateway or do this on every ready event. As 
 // such, a standalone script using the lighter REST manager is preferred.
 
-//const { REST, SlashCommandBuilder, Routes } = require('discord.js');
-//const mySecret = process.env['Discord_Bot_Secret'];
+//You only need to run node deploy-commands.js once. You should only run it again if you add or edit existing commands.
+
+const { REST, SlashCommandBuilder, Routes } = require('discord.js');
+const mySecret = process.env['Discord_Bot_Secret'];
+const appID = process.env['Discord_Bot_App_ID'];
+const guildID = process.env['Discord_Bot_Dev_Guild_ID'];
+
+const commands = [
+	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
+	new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
+	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
+]
+	.map(command => command.toJSON());
+
+const rest = new REST({ version: '10' }).setToken(mySecret);
+
+rest.put(Routes.applicationGuildCommands(appID, guildID), { body: commands })
+	.then((data) => console.log(`Successfully registered ${data.length} application commands.`))
+	.catch(console.error);
