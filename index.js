@@ -1,5 +1,6 @@
+//process.exit();
 // Require necessary Discord Classes
-const { Client, GatewayIntentBits}  = require('discord.js');
+const { Client, Events, GatewayIntentBits } = require('discord.js');
 // Keep the bot alive!
 var http = require('http');
 const server = http.createServer();
@@ -16,19 +17,20 @@ const client = new Client({
 });
 
 //client ready run this!
-client.once('ready', () => {
-  console.log("I am " + client.user.username);
+client.once(Events.ClientReady, c => {
+  console.log("I am " + c.user.tag);
 });
 
-// Login to discord with the token
-client.login(mySecret);
-console.log('boo')
+client.on(Events.Debug, ( e ) => console.log(e));
+client.on(Events.Error, ( e ) => console.log(e));
+//client.on(Events.Warn, ( e ) => console.log(e));
+//client.on(Events.ShardError, ( e ) => console.log(e));
 
 server.on('request', (request, res) => {
   res.setHeader("Content-Type", "application/json");
   res.writeHead(200);
   var responseJSON = {};
-  if(client.isReady()){
+  if (client.isReady()) {
     responseJSON.message = "I am " + client.user.username;
     //JavaScript counts in milliseconds
     var dateTime = new Date(client.readyTimestamp).toLocaleString();
@@ -38,8 +40,10 @@ server.on('request', (request, res) => {
     responseJSON.message = 'The Discord bot is not Ready.';
   }
   res.end(JSON.stringify(responseJSON));
-})
-  
+});
+
+// Login to discord with the token
+client.login(mySecret);
 
 
 
