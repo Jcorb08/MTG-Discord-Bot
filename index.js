@@ -6,7 +6,8 @@ var http = require('http');
 const server = http.createServer();
 server.listen(8080);
 // My super secret token
-const mySecret = process.env['Discord_Bot_Secret'];
+const mySecret = process.env['DISCORD_BOT_SECRET'];
+console.log(mySecret);
 
 // Client instance
 const client = new Client({
