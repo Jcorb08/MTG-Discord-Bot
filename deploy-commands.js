@@ -6,9 +6,9 @@
 //You only need to run node deploy-commands.js once. You should only run it again if you add or edit existing commands.
 
 const { REST, SlashCommandBuilder, Routes } = require('discord.js');
-const mySecret = process.env['Discord_Bot_Secret'];
-const appID = process.env['Discord_Bot_App_ID'];
-const guildID = process.env['Discord_Bot_Dev_Guild_ID'];
+const mySecret = process.env['DISCORD_BOT_SECRET'];
+const appID = process.env['DISCORD_BOT_APP_ID'];
+const guildID = process.env['DISCORD_BOT_DEV_GUILD_ID'];
 
 const commands = [
 	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),

@@ -4,7 +4,9 @@
   "description": "MTG Discord Bot using Discord.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "/usr/local/bin/node ./index.js",
+    "command-register": "/usr/local/bin/node ./deploy-commands.js"
   },
   "repository": {
     "type": "git",
