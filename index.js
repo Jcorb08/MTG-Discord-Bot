@@ -4,6 +4,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 // Require necessary Discord Classes
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+// Grab .env variables
+require('dotenv').config();
 // My super secret token
 const mySecret = process.env['DISCORD_BOT_SECRET'];
 console.log(mySecret);
