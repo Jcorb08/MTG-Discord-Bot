@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder,EmbedBuilder } = require('discord.js');
 
 module.exports={
     data: new SlashCommandBuilder()
@@ -6,6 +6,7 @@ module.exports={
         .setDescription('What can I do?'),
     async execute(interaction){
         // use embed to show all commands
-        await interaction.reply('Yet to be combined!');
+        const embed = new EmbedBuilder().setDescription('Pong!');
+        await interaction.reply({embeds:[embed],content:'Yet to be combined!'});
     },
 };
