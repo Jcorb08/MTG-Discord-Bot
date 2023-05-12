@@ -6,6 +6,8 @@
 //You only need to run node deploy-commands.js once. You should only run it again if you add or edit existing commands.
 
 const { REST, Routes } = require('discord.js');
+// Grab .env variables
+require('dotenv').config();
 // native file system module
 const fs = require('node:fs');
 const mySecret = process.env['DISCORD_BOT_SECRET'];
