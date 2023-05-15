@@ -1,20 +1,17 @@
 class Scryfall {
-    static scryfallUrl = 'https://api.scryfall.com';
-    constructor(){
-        //this.method = method;
-    }
+  static scryfallUrl = 'https://api.scryfall.com'
+  //   constructor () {
+  //     // this.method = method;
+  //   }
 
-    async fetch(method){
-        const response = await fetch(this.constructor.scryfallUrl + method);
-        const json = await response.json();
-        console.log(json);
-        return json
-    }
-
-    async cardsRandom(){
-        returnFetch = await this.fetch('/cards/random');
-        return returnFetch;
-    }
+  async cardsRandom () {
+    const res = await fetch(this.constructor.scryfallUrl + '/cards/random/')
+    if (!res.ok) throw Error(`cardsRandom Response: ${res.status} ${res.statusText}`)
+    const json = await res.json()
+    if (json.Error) throw Error('cardsRandom JSON ERROR')
+    console.log(json)
+    return json
+  }
 }
 
-module.exports.Scryfall = Scryfall;
+module.exports.Scryfall = Scryfall
