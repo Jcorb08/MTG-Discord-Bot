@@ -4,8 +4,8 @@ class Scryfall {
   //     // this.method = method;
   //   }
 
-  async cardsRandom () {
-    const res = await fetch(this.constructor.scryfallUrl + '/cards/random/')
+  async cardsRandom (query) {
+    const res = await fetch(this.constructor.scryfallUrl + '/cards/random/?q=' + query)
     if (!res.ok) throw Error(`cardsRandom Response: ${res.status} ${res.statusText}`)
     const json = await res.json()
     if (json.Error) throw Error('cardsRandom JSON ERROR')
