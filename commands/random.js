@@ -1,5 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder, SlashCommandStringOption } = require('discord.js')
-const { Scryfall } = require('../api/scryfallClass.js')
+const { SlashCommandBuilder, SlashCommandStringOption } = require('discord.js')
+const { Scryfall } = require('../api/scryfall.js')
+const { cardEmbed } = require('../api/cardEmbed.js')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,14 +14,8 @@ module.exports = {
     // request card
     const scryfall = new Scryfall()
     const card = await scryfall.cardsRandom(interaction.options.getString('query'))
-
-    // use embed to show card
-    const embed = new EmbedBuilder()
-    embed.setColor('Random')
-    embed.setTitle(card.name)
-    embed.setURL(card.scryfall_uri)
-    embed.setDescription(card.type_line)
-    embed.setAuthor({ name: interaction.client.user.tag, iconURL: interaction.client.user.avatarURL() })
+    // create embed
+    const embed = cardEmbed(card, interaction.client)
 
     await interaction.reply({ embeds: [embed] })
   }
