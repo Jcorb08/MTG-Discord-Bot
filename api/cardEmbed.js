@@ -1,11 +1,23 @@
 const { EmbedBuilder } = require('discord.js')
 const { Scryfall } = require('./scryfall.js')
+const emojis = require('../emojis/emojis.json')
 
 function cardEmbed (card, client) {
   // use embed to show card
   const embed = new EmbedBuilder()
   embed.setColor(Scryfall.colors[card.colors[0]] ?? 'LightGrey')
-  embed.setTitle(card.name)
+  let mana_emojis = '';
+  if (card.mana_cost){
+    mana_emojis += ' '
+    // mana_cost - '{2}{B}'
+    let mana_cost = card.mana_cost.replaceAll('{','').split('}')
+    // remove last
+    mana_cost.pop()
+    mana_cost.forEach(element => {
+      mana_emojis += emojis['mana'+element.toLowerCase()]
+    });
+  }
+  embed.setTitle(card.name + mana_emojis)
   embed.setURL(card.scryfall_uri)
   embed.setDescription(card.type_line)
   // embed.setAuthor({ name: client.user.tag, iconURL: client.user.avatarURL() })
