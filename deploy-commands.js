@@ -14,6 +14,25 @@ const mySecret = process.env.DISCORD_BOT_SECRET
 const appID = process.env.DISCORD_BOT_APP_ID
 const guildID = process.env.DISCORD_BOT_DEV_GUILD_ID
 
+// grab cmdline args
+var args = process.argv.slice(2);
+var route;
+// if argument
+if (args[0] == 'global'){
+  // deploy global
+  console.log('Deploy to Global')
+  route = Routes.applicationCommands(appID)
+} else if (args[0] == 'guild'){
+  // deploy to specific guild to test
+  console.log('Deploy to Guild')
+  route = Routes.applicationGuildCommands(appID, guildID)
+} else {
+  // deploy to specific guild to test
+  console.log('Deploy to Guild')
+  route = Routes.applicationGuildCommands(appID, guildID)
+}
+
+
 const commands = []
 // Grab all the command files from the commands directory must end with .js
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
@@ -34,10 +53,9 @@ const rest = new REST({ version: '10' }).setToken(mySecret);
 
     // The put method is used to fully refresh all commands in the guild with the current set
     const data = await rest.put(
-      // deploy to specific guild to test
       //Routes.applicationGuildCommands(appID, guildID),
-      // deploy global
-      Routes.applicationCommands(appID),
+      //Routes.applicationCommands(appID),
+      route,
       { body: commands }
     )
 
