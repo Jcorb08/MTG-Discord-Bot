@@ -2,6 +2,9 @@ const { EmbedBuilder } = require('discord.js')
 const { Scryfall } = require('./scryfall.js')
 const emojis = require('../emojis/emojis.json')
 
+//card_faces null (no key) when none - doesn't always have image for both
+//maybe need one for each type of double side?
+
 function cardEmbed (card, client) {
   // use embed to show card
   const embed = new EmbedBuilder()
