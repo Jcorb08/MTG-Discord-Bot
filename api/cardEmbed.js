@@ -5,6 +5,8 @@ const emojis = require('../emojis/emojis.json')
 //card_faces null (no key) when none - doesn't always have image for both
 //maybe need one for each type of double side?
 
+// work out which double sides have one image and which have two
+
 function cardEmbed (card, client) {
   // use embed to show card
   const embed = new EmbedBuilder()
