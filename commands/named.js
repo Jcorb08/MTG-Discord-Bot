@@ -17,10 +17,10 @@ module.exports = {
     const list = await scryfall.cardsSearch(interaction.options.getString('query'))
     // create embed
 
-    const embed = cardEmbed(list.data[0], interaction.client)
+    const cardEmbeds = cardEmbed(list.data[0], interaction.client)
 
     // use arrows to go through all embeds?
 
-    await interaction.reply({ embeds: [embed] })
+    await interaction.reply({ embeds: cardEmbeds })
   }
 }

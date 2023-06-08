@@ -8,7 +8,9 @@
     "start": "/usr/bin/node ./index.js",
     "start-mac": "/usr/local/bin/node ./index.js",
     "command-register": "/usr/bin/node ./deploy-commands.js",
-    "command-register-mac": "/usr/local/bin/node ./deploy-commands.js"
+    "command-register-mac": "/usr/local/bin/node ./deploy-commands.js",
+    "command-delete": "/usr/bin/node ./delete-commands.js",
+    "command-delete-mac": "/usr/local/bin/node ./delete-commands.js"
   },
   "repository": {
     "type": "git",
