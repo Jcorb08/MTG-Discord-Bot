@@ -15,8 +15,8 @@ module.exports = {
     const scryfall = new Scryfall()
     const card = await scryfall.cardsRandom(interaction.options.getString('query'))
     // create embed
-    const embed = cardEmbed(card, interaction.client)
+    const cardEmbeds = cardEmbed(card, interaction.client)
 
-    await interaction.reply({ embeds: [embed] })
+    await interaction.reply({ embeds: cardEmbeds })
   }
 }
