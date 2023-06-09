@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, SlashCommandStringOption } = require('discord.js')
 const { Scryfall } = require('../api/scryfall.js')
-const { cardEmbed } = require('../api/cardEmbed.js')
+const { CardEmbed } = require('../api/cardEmbed.js')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -17,10 +17,10 @@ module.exports = {
     const list = await scryfall.cardsSearch(interaction.options.getString('query'))
     // create embed
 
-    const cardEmbeds = cardEmbed(list.data[0], interaction.client)
+    const cardEmbeds = new CardEmbed(list.data[0], interaction.client)
 
     // use arrows to go through all embeds?
 
-    await interaction.reply({ embeds: cardEmbeds })
+    await interaction.reply({ embeds: cardEmbeds.embeds })
   }
 }

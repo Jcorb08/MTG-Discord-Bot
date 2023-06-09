@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, SlashCommandStringOption } = require('discord.js')
 const { Scryfall } = require('../api/scryfall.js')
-const { cardEmbed } = require('../api/cardEmbed.js')
+const { CardEmbed } = require('../api/cardEmbed.js')
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,8 +15,9 @@ module.exports = {
     const scryfall = new Scryfall()
     const card = await scryfall.cardsRandom(interaction.options.getString('query'))
     // create embed
-    const cardEmbeds = cardEmbed(card, interaction.client)
+    const cardEmbeds = new CardEmbed(card, interaction.client)
 
-    await interaction.reply({ embeds: cardEmbeds })
+
+    await interaction.reply({ embeds: cardEmbeds.embeds })
   }
 }
