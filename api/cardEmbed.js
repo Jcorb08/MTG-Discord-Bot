@@ -21,7 +21,7 @@ class CardEmbed {
     if (this.card.card_faces?.length > 0) {
       if (this.card.layout === 'split' || this.card.layout === 'flip') {
         // one image two face
-        embed = this.embedInit(this.card)
+        embed = this.embedInit()
         embed.setImage(this.card.image_uris.png)
         this.card.card_faces.forEach(face => {
           let description = ''
@@ -37,11 +37,18 @@ class CardEmbed {
         // two images two faces
         this.card.card_faces.forEach(face => {
           embed = this.embedInit(face)
+          if (face.oracle_text) {
+            let description = face.oracle_text
+            description = description.replaceAll(/{([A-Za-z0-9]+)}/g, (match, p1, offset) => emojis['mana' + p1.toLowerCase()])
+            embed.addFields({ name: ' ', value: description })
+          }
+          embed.setImage(face.image_uris.png)
+          this.embeds.push(embed)
         })
       }
     } else {
       // normal - one side one image
-      embed = this.embedInit(this.card)
+      embed = this.embedInit()
       if (this.card.oracle_text) {
         let description = this.card.oracle_text
         description = description.replaceAll(/{([A-Za-z0-9]+)}/g, (match, p1, offset) => emojis['mana' + p1.toLowerCase()])
@@ -69,24 +76,26 @@ class CardEmbed {
     }
   }
 
-  embedInit (card) {
+  embedInit (face = false) {
     const embed = new EmbedBuilder()
+    const obj = face ? face : this.card
+
     // add colour down one side
-    if (card.colors?.length > 0) {
-      embed.setColor(Scryfall.colors[card.colors[0]])
-    } else if (card.color_identity?.length > 0) {
-      embed.setColor(Scryfall.colors[this.card.color_identity[0]])
+    if (obj.colors?.length > 0) {
+      embed.setColor(Scryfall.colors[obj.colors[0]])
+    } else if (obj.color_identity?.length > 0) {
+      embed.setColor(Scryfall.colors[obj.color_identity[0]])
     } else {
       embed.setColor('LightGrey')
     }
     // if single cost, add to title otherwise we add to fields
-    embed.setTitle(card.name + this.getManaEmojis(this.card.mana_cost))
-    embed.setURL(card.scryfall_uri)
-    embed.setDescription(card.type_line)
+    embed.setTitle(obj.name + this.getManaEmojis(obj.mana_cost))
+    embed.setURL(this.card.scryfall_uri)
+    embed.setDescription(obj.type_line)
     // embed.setAuthor({ name: client.user.tag, iconURL: client.user.avatarURL() })
-    embed.setAuthor({ name: card.artist })
-    if (card.released_at) {
-      embed.setTimestamp(new Date(card.released_at))
+    embed.setAuthor({ name: this.card.artist })
+    if (this.card.released_at) {
+      embed.setTimestamp(new Date(this.card.released_at))
     }
     embed.setFooter({ text: `Request took ${this.client.ws.ping}ms` })
     return embed
