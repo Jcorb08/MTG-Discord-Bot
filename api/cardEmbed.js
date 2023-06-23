@@ -1,4 +1,4 @@
-const { EmbedBuilder, Faces } = require('discord.js')
+const { EmbedBuilder } = require('discord.js')
 const { Scryfall } = require('./scryfall.js')
 const emojis = require('../emojis/emojis.json')
 
@@ -78,7 +78,7 @@ class CardEmbed {
 
   embedInit (face = false) {
     const embed = new EmbedBuilder()
-    const obj = face ? face : this.card
+    const obj = face || this.card
 
     // add colour down one side
     if (obj.colors?.length > 0) {
