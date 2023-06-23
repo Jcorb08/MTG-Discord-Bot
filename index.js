@@ -54,26 +54,26 @@ for (const file of eventFiles) {
 
 // Webserver Code
 // Keep the bot alive!
-const http = require('http')
-const server = http.createServer()
-server.listen(8080)
+// const http = require('http')
+// const server = http.createServer()
+// server.listen(8080)
 
-// Create server to host bot
-server.on('request', (request, res) => {
-  res.setHeader('Content-Type', 'application/json')
-  res.writeHead(200)
-  const responseJSON = {}
-  if (client.isReady()) {
-    responseJSON.message = 'I am ' + client.user.username
-    // JavaScript counts in milliseconds
-    const dateTime = new Date(client.readyTimestamp).toLocaleString()
-    responseJSON.readyTimestamp = 'I was ready at: ' + dateTime
-    responseJSON.uptime = "I've been Up for: " + client.uptime + 'ms'
-  } else {
-    responseJSON.message = 'The Discord bot is not Ready.'
-  }
-  res.end(JSON.stringify(responseJSON))
-})
+// // Create server to host bot
+// server.on('request', (request, res) => {
+//   res.setHeader('Content-Type', 'application/json')
+//   res.writeHead(200)
+//   const responseJSON = {}
+//   if (client.isReady()) {
+//     responseJSON.message = 'I am ' + client.user.username
+//     // JavaScript counts in milliseconds
+//     const dateTime = new Date(client.readyTimestamp).toLocaleString()
+//     responseJSON.readyTimestamp = 'I was ready at: ' + dateTime
+//     responseJSON.uptime = "I've been Up for: " + client.uptime + 'ms'
+//   } else {
+//     responseJSON.message = 'The Discord bot is not Ready.'
+//   }
+//   res.end(JSON.stringify(responseJSON))
+// })
 
 // Login to discord with the token
 client.login(mySecret)
