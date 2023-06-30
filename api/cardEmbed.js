@@ -25,8 +25,8 @@ class CardEmbed {
         embed.setImage(this.card.image_uris.png)
         this.card.card_faces.forEach(face => {
           let description = ''
-          if (this.card.oracle_text) {
-            description = this.card.oracle_text
+          if (face.oracle_text) {
+            description = face.oracle_text
             description = description.replaceAll(/{([A-Za-z0-9]+)}/g, (match, p1, offset) => emojis['mana' + p1.toLowerCase()])
           }
           const title = face.name + this.getManaEmojis(face.mana_cost)
@@ -43,7 +43,7 @@ class CardEmbed {
             embed.addFields({ name: ' ', value: description })
           }
           embed.setImage(face.image_uris.png)
-          this.embeds.push(embed)
+          this.embeds.push(structuredClone(embed.data))
         })
       }
     } else {
@@ -60,11 +60,12 @@ class CardEmbed {
   }
 
   // add mana emojis to title / field
-  getManaEmojis (manaCost) {
+  getManaEmojis (cost) {
+    let manaCost = cost
     if (manaCost) {
       let manaEmojis = ''
       // manaCost - '{2}{B}'
-      const manaCost = this.card.mana_cost.replaceAll('{', '').split('}')
+      manaCost = manaCost.replaceAll('{', '').split('}')
       // remove last
       manaCost.pop()
       manaCost.forEach(element => {
@@ -79,6 +80,7 @@ class CardEmbed {
   embedInit (face = false) {
     const embed = new EmbedBuilder()
     const obj = face || this.card
+    console.log(obj)
 
     // add colour down one side
     if (obj.colors?.length > 0) {
@@ -91,7 +93,7 @@ class CardEmbed {
     // if single cost, add to title otherwise we add to fields
     embed.setTitle(obj.name + this.getManaEmojis(obj.mana_cost))
     embed.setURL(this.card.scryfall_uri)
-    embed.setDescription(obj.type_line)
+    embed.setDescription(obj.type_line || this.card.type_line)
     // embed.setAuthor({ name: client.user.tag, iconURL: client.user.avatarURL() })
     embed.setAuthor({ name: this.card.artist })
     if (this.card.released_at) {
