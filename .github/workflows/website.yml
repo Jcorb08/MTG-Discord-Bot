@@ -16,8 +16,12 @@ jobs:
       with:
         dotnet-version: 7.x
    # publishes Blazor project to the release-folder
+    - name: cd
+      run: |
+        cd /home/runner/work/MTG-Discord-Bot/MTG-Discord-Bot/website/
+        ls
     - name: Publish .NET Core Project
-      run: dotnet publish /home/runner/work/MTG-Discord-Bot/MTG-Discord-Bot/website/MTGDiscordBot.csproj -c Release -o release --nologo     
+      run: dotnet publish MTGDiscordBot.csproj -c Release -o release --nologo     
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
