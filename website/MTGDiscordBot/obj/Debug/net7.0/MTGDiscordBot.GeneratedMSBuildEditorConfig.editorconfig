@@ -1,12 +1,12 @@
 is_global = true
 build_property.TargetFramework = net7.0
 build_property.TargetPlatformMinVersion = 
-build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = 
 build_property.ProjectTypeGuids = 
-build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = false
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
-build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = browser
 build_property.RootNamespace = MTGDiscordBot
 build_property.RootNamespace = MTGDiscordBot
 build_property.ProjectDir = /home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/
@@ -16,30 +16,34 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Pages/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-3abszv0woi
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-uwgs49i0vo
+
+[/home/joe/Documents/DiscordBotMk2/MTG-Discord-Bot/website/MTGDiscordBot/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-uvlhczomz2
