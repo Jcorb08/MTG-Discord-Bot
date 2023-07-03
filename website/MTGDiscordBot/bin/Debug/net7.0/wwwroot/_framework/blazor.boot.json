@@ -198,13 +198,13 @@
       "mscorlib.dll": "sha256-kgowZLZGyceaJo4bHvVY1kmm1GJuawa5rPO1RCfNYWc=",
       "netstandard.dll": "sha256-2\/SuexPFW8hizUgbgPcchYHfG\/zmGzzMN6ESSyefPRQ=",
       "System.Private.CoreLib.dll": "sha256-mcywrbK0VZXiOvZ4dxU1ocaPZFplCRSIPQ\/wFikcrus=",
-      "MTGDiscordBot.dll": "sha256-m3u27ng9v9TBwVwIkZE92EZEbY+LD9JgaWLGeUk\/6Gg="
+      "MTGDiscordBot.dll": "sha256-e6G1VUbm1yciEN0PpFQRs3Fbh2px9yLzmFCjODOGCeY="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "MTGDiscordBot.pdb": "sha256-JFII5yZE+3H8YAgWBH\/v+4tIG6+ysdW6mcBhGB+dTmI="
+      "MTGDiscordBot.pdb": "sha256-PN7TAIhFqdfOK1GOQ330IP5M40ptLceeYnMBt5HoYHA="
     },
     "runtime": {
       "dotnet.7.0.3.38m5p9w7e5.js": "sha256-DxGvmbtUa6hGJpk3VyMEbkPZ653qWbQkh8X4ZVM9TWM=",
