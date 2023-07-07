@@ -1,0 +1,15 @@
+[Unit]
+Description="MTG Discord Bot"
+
+[Service]
+ExecStart=/usr/bin/node index.js
+WorkingDirectory=/home/joe/MTG-Discord-Bot/bot
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=MTGBot
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
