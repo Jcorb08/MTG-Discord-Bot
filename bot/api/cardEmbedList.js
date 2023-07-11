@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js')
-const emojis = require('../emojis/emojis.json')
+const { Scryfall } = require('./scryfall')
 
 class CardEmbedList {
   constructor (list, client, query) {
@@ -8,27 +8,29 @@ class CardEmbedList {
     this.client = client
     this.page = 0
     this.embeds = []
+    this.scryfall = new Scryfall()
     this.embedCreator()
   }
 
   embedCreator () {
-    let embed = this.embedInit()
+    const embed = this.embedInit()
     let count = 0
     let listDescription = ''
-    this.list[this.page].data.forEach(card => {
-      console.log(count)
-      console.log(count % 5)
-      if (embed.data.fields?.length === 25) {
-        this.embeds.push(structuredClone(embed.data))
-        embed = this.embedInit()
-      }
+    let endcond = false
+    while (!endcond && count < this.list[this.page].total_cards) {
+      const card = this.list[this.page].data[count]
+      console.log(`${card.name} ${count}`)
       if (count % 5 === 0 && count !== 0) {
         embed.addFields({ name: ' ', value: structuredClone(listDescription) })
         listDescription = ''
       }
-      listDescription += '[' + card.name + this.getManaEmojis(card.mana_cost) + '](' + card.scryfall_uri + ')\n'
+      listDescription += '[' + card.name + ' ' + this.scryfall.getManaEmojis(card.mana_cost) + '](' + card.scryfall_uri + ')\n'
       count++
-    })
+      if (count === 50 || embed.data.fields?.length === 8) {
+        endcond = true
+        embed.addFields({ name: 'List too long', value: 'Please find the rest of the query here...' })
+      }
+    }
     console.log(embed.data)
     this.embeds.push(structuredClone(embed.data))
   }
@@ -40,24 +42,6 @@ class CardEmbedList {
     embed.setAuthor({ name: `Total Cards Found: ${this.list[this.page].total_cards}` })
     embed.setFooter({ text: `Request took ${this.client.ws.ping}ms` })
     return embed
-  }
-
-  // add mana emojis to title / field
-  getManaEmojis (cost) {
-    let manaCost = cost
-    if (manaCost) {
-      let manaEmojis = ''
-      // manaCost - '{2}{B}'
-      manaCost = manaCost.replaceAll('{', '').split('}')
-      // remove last
-      manaCost.pop()
-      manaCost.forEach(element => {
-        manaEmojis += emojis['mana' + element.toLowerCase()]
-      })
-      return manaEmojis
-    } else {
-      return ''
-    }
   }
 
   async getNextPage (nextPage) {

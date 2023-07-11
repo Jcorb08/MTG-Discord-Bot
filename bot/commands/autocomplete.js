@@ -15,8 +15,9 @@ module.exports = {
     const embed = new EmbedBuilder()
     const scryfall = new Scryfall()
     const list = await scryfall.cardsAutocomplete(interaction.options.getString('query'))
+    // console.log(list.data.length)
     if (list.data) {
-      embed.setTitle('A list of similar card names')
+      embed.setTitle('Similar card names to "' + interaction.options.getString('query') + '"')
       embed.setDescription(list.data.toString().replaceAll(',', '\n '))
     } else {
       embed.setTitle('No similar card names found')

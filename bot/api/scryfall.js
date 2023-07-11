@@ -1,3 +1,5 @@
+const emojis = require('../emojis/emojis.json')
+
 class Scryfall {
   static scryfallUrl = 'https://api.scryfall.com'
   static colors = {
@@ -42,6 +44,31 @@ class Scryfall {
     if (json.Error) throw Error('cardsRandom JSON ERROR')
     // console.log(json)
     return json
+  }
+
+  // add mana emojis to title / field
+  getManaEmojis (cost) {
+    let manaCost = cost
+    if (manaCost) {
+      let manaEmojis = ''
+      // manaCost - '{2}{B}'
+      manaCost = manaCost.replaceAll('{', '').split('}')
+      // remove last
+      manaCost.pop()
+      manaCost.forEach(element => {
+        if (element.includes(' // ')) {
+          element = element.replaceAll(' // ', '')
+          manaEmojis += ' // '
+        }
+        if (element.includes('/')) {
+          element = element.replaceAll('/', '')
+        }
+        manaEmojis += emojis['mana' + element.toLowerCase()]
+      })
+      return manaEmojis
+    } else {
+      return ''
+    }
   }
 }
 

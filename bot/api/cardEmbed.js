@@ -11,6 +11,7 @@ class CardEmbed {
     this.card = card
     this.client = client
     this.embeds = []
+    this.scryfall = new Scryfall()
     this.embedCreator()
   }
 
@@ -29,7 +30,7 @@ class CardEmbed {
             description = face.oracle_text
             description = description.replaceAll(/{([A-Za-z0-9]+)}/g, (match, p1, offset) => emojis['mana' + p1.toLowerCase()])
           }
-          const title = face.name + this.getManaEmojis(face.mana_cost)
+          const title = face.name + this.scryfall.getManaEmojis(face.mana_cost)
           embed.addFields({ name: title, value: description, inline: true })
         })
         this.embeds = [embed]
@@ -59,24 +60,6 @@ class CardEmbed {
     }
   }
 
-  // add mana emojis to title / field
-  getManaEmojis (cost) {
-    let manaCost = cost
-    if (manaCost) {
-      let manaEmojis = ''
-      // manaCost - '{2}{B}'
-      manaCost = manaCost.replaceAll('{', '').split('}')
-      // remove last
-      manaCost.pop()
-      manaCost.forEach(element => {
-        manaEmojis += emojis['mana' + element.toLowerCase()]
-      })
-      return manaEmojis
-    } else {
-      return ''
-    }
-  }
-
   embedInit (face = false) {
     const embed = new EmbedBuilder()
     const obj = face || this.card
@@ -84,14 +67,14 @@ class CardEmbed {
 
     // add colour down one side
     if (obj.colors?.length > 0) {
-      embed.setColor(Scryfall.colors[obj.colors[0]])
+      embed.setColor(this.scryfall.colors[obj.colors[0]])
     } else if (obj.color_identity?.length > 0) {
-      embed.setColor(Scryfall.colors[obj.color_identity[0]])
+      embed.setColor(this.scryfall.colors[obj.color_identity[0]])
     } else {
       embed.setColor('LightGrey')
     }
     // if single cost, add to title otherwise we add to fields
-    embed.setTitle(obj.name + this.getManaEmojis(obj.mana_cost))
+    embed.setTitle(obj.name + this.scryfall.getManaEmojis(obj.mana_cost))
     embed.setURL(this.card.scryfall_uri)
     embed.setDescription(obj.type_line || this.card.type_line)
     // embed.setAuthor({ name: client.user.tag, iconURL: client.user.avatarURL() })
