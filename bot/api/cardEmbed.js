@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require('discord.js')
 const { Scryfall } = require('./scryfall.js')
 const emojis = require('../emojis/emojis.json')
+const colors = require('./colors.json')
 
 // card_faces null (no key) when none - doesn't always have image for both
 // maybe need one for each type of double side?
@@ -67,9 +68,9 @@ class CardEmbed {
 
     // add colour down one side
     if (obj.colors?.length > 0) {
-      embed.setColor(this.scryfall.colors[obj.colors[0]])
+      embed.setColor(colors[obj.colors[0]])
     } else if (obj.color_identity?.length > 0) {
-      embed.setColor(this.scryfall.colors[obj.color_identity[0]])
+      embed.setColor(colors[obj.color_identity[0]])
     } else {
       embed.setColor('LightGrey')
     }
