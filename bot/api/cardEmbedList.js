@@ -2,8 +2,9 @@ const { EmbedBuilder } = require('discord.js')
 const { Scryfall } = require('./scryfall')
 
 class CardEmbedList {
-  constructor (list, client, query) {
+  constructor (list, client, query, order) {
     this.query = query
+    this.order = order
     this.list = [list]
     this.client = client
     this.page = 0
@@ -19,26 +20,28 @@ class CardEmbedList {
     let endcond = false
     while (!endcond && count < this.list[this.page].total_cards) {
       const card = this.list[this.page].data[count]
-      console.log(`${card.name} ${count}`)
+      // console.log(`${card.name} ${count}`)
       if (count % 5 === 0 && count !== 0) {
         embed.addFields({ name: ' ', value: structuredClone(listDescription) })
         listDescription = ''
       }
       listDescription += '[' + card.name + ' ' + this.scryfall.getManaEmojis(card.mana_cost) + '](' + card.scryfall_uri + ')\n'
       count++
-      if (count === 50 || embed.data.fields?.length === 8) {
+      if (count === 35 || embed.data.fields?.length === 8) {
         endcond = true
-        embed.addFields({ name: 'List too long', value: 'Please find the rest of the query here...' })
+        const url = this.list[this.page].next_page.replace('/cards', '').replace('api.', '').replace('format=json&', '').replace('page=2', 'page=1')
+        const strLong = 'Please find the rest of the query [here](' + url + ').'
+        embed.addFields({ name: 'List too long', value: strLong })
       }
     }
-    console.log(embed.data)
+    // console.log(embed.data)
     this.embeds.push(structuredClone(embed.data))
   }
 
   embedInit () {
     const embed = new EmbedBuilder()
     embed.setTitle(`Search query for "${this.query}"`)
-    embed.setDescription('List of cards found')
+    embed.setDescription(`List of cards found ordered by: ${this.order}`)
     embed.setAuthor({ name: `Total Cards Found: ${this.list[this.page].total_cards}` })
     embed.setFooter({ text: `Request took ${this.client.ws.ping}ms` })
     return embed

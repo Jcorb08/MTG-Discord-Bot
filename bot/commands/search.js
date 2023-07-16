@@ -10,13 +10,27 @@ module.exports = {
       .setName('query')
       .setDescription('A fulltext search query to filter the pool of random cards.')
       .setRequired(true)
+    )
+    .addStringOption(new SlashCommandStringOption()
+      .setName('order')
+      .setDescription('The order of the list that is returns')
+      .setRequired(true)
+      .addChoices(
+        { name: 'Name', value: 'name' },
+        { name: 'Set', value: 'set' },
+        { name: 'Released', value: 'released' },
+        { name: 'Rarity', value: 'rarity' },
+        { name: 'Mana Value', value: 'cmc' },
+        { name: 'Color', value: 'color' },
+        { name: 'Edhrec', value: 'edhrec' }
+      )
     ),
   async execute (interaction) {
     // request card - returns list object
     const scryfall = new Scryfall()
-    const list = await scryfall.cardsSearch(interaction.options.getString('query'))
+    const list = await scryfall.cardsSearch(interaction.options.getString('query'), interaction.options.getString('order'))
     // create embed
-    const cardEmbeds = new CardEmbedList(list, interaction.client, interaction.options.getString('query'))
+    const cardEmbeds = new CardEmbedList(list, interaction.client, interaction.options.getString('query'), interaction.options.getString('order'))
 
     await interaction.reply({ embeds: cardEmbeds.embeds })
   }

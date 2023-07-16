@@ -11,7 +11,7 @@ class Scryfall {
   }
 
   async cardsRandom (query) {
-    const res = await fetch(this.constructor.scryfallUrl + '/cards/random/' + (query ? '?q=' + query : ''))
+    const res = await fetch(this.constructor.scryfallUrl + '/cards/random' + (query ? '?q=' + query : ''))
     if (!res.ok) throw Error(`cardsRandom Response: ${res.status} ${res.statusText}`)
     const json = await res.json()
     if (json.Error) throw Error('cardsRandom JSON ERROR')
@@ -19,17 +19,17 @@ class Scryfall {
     return json
   }
 
-  async cardsSearch (query) {
-    const res = await fetch(this.constructor.scryfallUrl + '/cards/search/' + '?q=' + query)
+  async cardsSearch (query, order) {
+    const res = await fetch(this.constructor.scryfallUrl + '/cards/search' + '?order=' + order + '&q=' + query)
     if (!res.ok) throw Error(`cardsSearch Response: ${res.status} ${res.statusText}`)
     const json = await res.json()
     if (json.Error) throw Error('cardsSearch JSON ERROR')
-    console.log(`${json.total_cards} ${json.has_more} ${json.data.length}`)
+    // console.log(`${json.total_cards} ${json.has_more} ${json.data.length}`)
     return json
   }
 
   async cardsNamed (query) {
-    const res = await fetch(this.constructor.scryfallUrl + '/cards/named/' + '?fuzzy=' + query)
+    const res = await fetch(this.constructor.scryfallUrl + '/cards/named' + '?fuzzy=' + query)
     if (!res.ok) throw Error(`cardsNamed Response: ${res.status} ${res.statusText}`)
     const json = await res.json()
     if (json.Error) throw Error('cardsNamed JSON ERROR')
@@ -38,7 +38,7 @@ class Scryfall {
   }
 
   async cardsAutocomplete (query) {
-    const res = await fetch(this.constructor.scryfallUrl + '/cards/autocomplete/' + '?q=' + query)
+    const res = await fetch(this.constructor.scryfallUrl + '/cards/autocomplete' + '?q=' + query)
     if (!res.ok) throw Error(`cardsRandom Response: ${res.status} ${res.statusText}`)
     const json = await res.json()
     if (json.Error) throw Error('cardsRandom JSON ERROR')
