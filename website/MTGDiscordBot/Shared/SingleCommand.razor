@@ -1,0 +1,13 @@
+<li class="alert alert-blend mt-4">
+
+    <h2 class="small-heading"><strong>@Title</strong></h2>
+    <p>@ChildContent</p>
+</li>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

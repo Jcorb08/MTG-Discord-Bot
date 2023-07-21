@@ -18,6 +18,11 @@
     top: -2px;
 }
 
+.oi-padding-right {
+    margin-left: 0.75rem;
+    font-size: 0.9rem;
+}
+
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
