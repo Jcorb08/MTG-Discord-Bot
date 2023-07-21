@@ -1,3 +1,13 @@
+/* /Pages/Commands.razor.rz.scp.css */
+ul[b-cdecnvwp7a] {
+list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+h2.small-heading[b-cdecnvwp7a] {
+  font-size: 1.5rem;
+}
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-uwgs49i0vo] {
     position: relative;
@@ -99,6 +109,11 @@ main[b-uwgs49i0vo] {
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
+}
+
+.oi-padding-right[b-uvlhczomz2] {
+    margin-left: 0.75rem;
+    font-size: 0.9rem;
 }
 
 .nav-item[b-uvlhczomz2] {
