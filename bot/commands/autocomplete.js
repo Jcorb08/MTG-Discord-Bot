@@ -16,11 +16,11 @@ module.exports = {
     const scryfall = new Scryfall()
     const list = await scryfall.cardsAutocomplete(interaction.options.getString('query'))
     // console.log(list.data.length)
-    if (list.data) {
+    if (list.data.length > 0) {
       embed.setTitle('Similar card names to "' + interaction.options.getString('query') + '"')
       embed.setDescription(list.data.toString().replaceAll(',', '\n '))
     } else {
-      embed.setTitle('No similar card names found')
+      embed.setTitle('No similar card names found for "' + interaction.options.getString('query') + '"')
     }
     await interaction.reply({ embeds: [embed] })
   }

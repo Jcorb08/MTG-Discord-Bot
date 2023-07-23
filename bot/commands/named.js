@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, SlashCommandStringOption } = require('discord.js')
+const { SlashCommandBuilder, EmbedBuilder, SlashCommandStringOption } = require('discord.js')
 const { Scryfall } = require('../api/scryfall.js')
 const { CardEmbed } = require('../api/cardEmbed.js')
 
@@ -15,13 +15,18 @@ module.exports = {
     // request card - returns list object
     const scryfall = new Scryfall()
     const card = await scryfall.cardsNamed(interaction.options.getString('query'))
-    // create embed
+    if (card instanceof Error) {
+      const cardEmbed = new EmbedBuilder()
+      cardEmbed.setTitle('No named card found for "' + interaction.options.getString('query') + '"')
+      await interaction.reply({ embeds: [cardEmbed] })
+    } else {
+      // create embed
+      const cardEmbeds = new CardEmbed(card, interaction.client)
 
-    const cardEmbeds = new CardEmbed(card, interaction.client)
-
-    await interaction.reply({ embeds: [cardEmbeds.embeds[0]] })
-    for (let index = 1; index < cardEmbeds.embeds.length; index++) {
-      await interaction.followUp({ embeds: [cardEmbeds.embeds[index]] })
+      await interaction.reply({ embeds: [cardEmbeds.embeds[0]] })
+      for (let index = 1; index < cardEmbeds.embeds.length; index++) {
+        await interaction.followUp({ embeds: [cardEmbeds.embeds[index]] })
+      }
     }
   }
 }
