@@ -4,9 +4,22 @@ list-style-type: none; /* Remove bullets */
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margins */
 }
+/* /Pages/Index.razor.rz.scp.css */
+.center-container[b-lc9glrshta]{
+    display:flex;
+    text-align:center;
+    flex-direction: column;
+}
 
-h2.small-heading[b-cdecnvwp7a] {
-  font-size: 1.5rem;
+.center-container img[b-lc9glrshta] {
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.center-container div[b-lc9glrshta] {
+    margin: auto;
+    text-align: center;
 }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-uwgs49i0vo] {
@@ -163,4 +176,12 @@ main[b-uwgs49i0vo] {
         height: calc(100vh - 3.5rem);
         overflow-y: auto;
     }
+}
+/* /Shared/SingleCommand.razor.rz.scp.css */
+h2.small-heading[b-0mca58jrei] {
+    font-size: 1.25rem;
+  }
+  
+p.bigger-paragraph[b-0mca58jrei] {
+font-size: 1.1rem;
 }
