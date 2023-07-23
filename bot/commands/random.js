@@ -5,7 +5,7 @@ const { CardEmbed } = require('../api/cardEmbed.js')
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('random')
-    .setDescription('Request a card at random')
+    .setDescription('Request a single card at random.')
     .addStringOption(new SlashCommandStringOption()
       .setName('query')
       .setDescription('An optional fulltext search query to filter the pool of random cards.')

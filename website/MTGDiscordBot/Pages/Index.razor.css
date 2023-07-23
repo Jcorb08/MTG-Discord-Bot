@@ -1,0 +1,16 @@
+.center-container{
+    display:flex;
+    text-align:center;
+    flex-direction: column;
+}
+
+.center-container img {
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.center-container div {
+    margin: auto;
+    text-align: center;
+}

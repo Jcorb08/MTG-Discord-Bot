@@ -4,7 +4,7 @@ const { Scryfall } = require('../api/scryfall.js')
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('autocomplete')
-    .setDescription('Returns names of cards that could be related to given input')
+    .setDescription('Returns names of cards that could be related to given input.')
     .addStringOption(new SlashCommandStringOption()
       .setName('query')
       .setDescription('A card name to autocomplete.')

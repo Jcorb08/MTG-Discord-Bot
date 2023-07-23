@@ -5,7 +5,7 @@ const { CardEmbed } = require('../api/cardEmbed.js')
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('name')
-    .setDescription('Request a card by name')
+    .setDescription('Request a single card by name.')
     .addStringOption(new SlashCommandStringOption()
       .setName('query')
       .setDescription('A fuzzy card name to search for does not have to be exact.')
