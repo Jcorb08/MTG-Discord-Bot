@@ -29,7 +29,14 @@ class CardEmbedList {
       count++
       if (count === 35 || embed.data.fields?.length === 8) {
         endcond = true
-        const url = this.list[this.page].next_page.replace('/cards', '').replace('api.', '').replace('format=json&', '').replace('page=2', 'page=1')
+        let url
+        if (this.list[this.page].has_more) {
+          // use next page url to build url
+          url = this.list[this.page].next_page.replace('/cards', '').replace('api.', '').replace('format=json&', '').replace('page=2', 'page=1')
+        } else {
+          // build url from scratch
+          url = Scryfall.scryfallSearchUrl + '?q=' + this.query + '&order=' + this.order
+        }
         const strLong = 'Please find the rest of the query [here](' + url + ').'
         embed.addFields({ name: 'List too long', value: strLong })
       }

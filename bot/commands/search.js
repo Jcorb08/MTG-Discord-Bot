@@ -35,6 +35,7 @@ module.exports = {
       await interaction.reply({ embeds: [cardEmbed] })
     } else {
       // create embed
+      console.log(list.next_page)
       const cardEmbeds = new CardEmbedList(list, interaction.client, interaction.options.getString('query'), interaction.options.getString('order'))
       await interaction.reply({ embeds: cardEmbeds.embeds })
     }

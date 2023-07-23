@@ -2,6 +2,7 @@ const emojis = require('../emojis/emojis.json')
 
 class Scryfall {
   static scryfallUrl = 'https://api.scryfall.com'
+  static scryfallSearchUrl = 'https://scryfall.com/search'
   static colors = {
     W: 'White',
     U: 'Blue',
